@@ -1,0 +1,32 @@
+
+<!-- saved from url=(0083)http://www.acuriousanimal.com/Openlayers-Cookbook/recipes/ch02/ch02_google_rcp.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" charset="UTF-8" src="./ch02_google_rcp_files/common.js.download"></script><script type="text/javascript" charset="UTF-8" src="./ch02_google_rcp_files/util.js.download"></script><script type="text/javascript" charset="UTF-8" src="./ch02_google_rcp_files/stats.js.download"></script><script type="text/javascript" charset="UTF-8" src="./ch02_google_rcp_files/AuthenticationService.Authenticate"></script></head><body><div id="ch2_google" style="width: 100%; height: 100%;"></div>
+
+<script type="text/javascript" src="./ch02_google_rcp_files/js"></script>
+
+<!-- The magic comes here -->
+<script type="text/javascript">
+
+    // Create the map using the specified DOM element
+    var map = new OpenLayers.Map("ch2_google");
+    map.addControl(new OpenLayers.Control.LayerSwitcher());
+    
+    var streets = new OpenLayers.Layer.Google("Google Streets", {
+        numZoomLevels: 20
+    });
+    var physical = new OpenLayers.Layer.Google("Google Physical", {
+        type: google.maps.MapTypeId.TERRAIN
+    });
+    var hybrid = new OpenLayers.Layer.Google("Google Hybrid", {
+        type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20
+    });
+    var satellite = new OpenLayers.Layer.Google("Google Satellite", {
+        type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22
+    });
+
+    map.addLayers([physical, streets, hybrid, satellite]);
+    
+    map.setCenter(new OpenLayers.LonLat(0, 0), 2);
+    
+</script>
+</body></html>

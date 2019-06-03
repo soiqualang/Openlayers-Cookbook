@@ -1,0 +1,36 @@
+
+<!-- saved from url=(0088)http://www.acuriousanimal.com/Openlayers-Cookbook/recipes/ch01/ch01_avoid_baselayer.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><div id="ch1_avoid_baselayer" style="width: 100%; height: 95%;"></div>
+
+<!-- The magic comes here -->
+<script type="text/javascript">
+
+    // Create the map using the specified DOM element
+    var map = new OpenLayers.Map("ch1_avoid_baselayer", {
+        allOverlays: true
+    });
+    
+    var osm = new OpenLayers.Layer.OSM("OpenStreetMap");
+    map.addLayer(osm);
+    
+    /*
+	var arrayOSM = ["http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg",
+        "http://g1.cloudgis.vn/services/rest/maps/roadmap/tile/${z}/${x}/${y}.png",
+        "http://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg",
+        "http://otile4.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.jpg"];
+	*/
+	var arrayOSM = [
+        "http://g1.cloudgis.vn/services/rest/maps/roadmap/tile/${z}/${x}/${y}.png"];
+    
+    var arrayGloud = new OpenLayers.Layer.OSM("Gcloud Vietnam", arrayOSM);
+    map.addLayer(arrayGloud);
+    
+    // Add LayerSwitcher control
+    map.addControl(new OpenLayers.Control.LayerSwitcher());
+    
+    // Set view to zoom maximum map extent
+    // NOTE: This will fail if there is no base layer defined
+    map.setCenter(new OpenLayers.LonLat(-100, 40), 3);
+        
+</script>
+</body></html>

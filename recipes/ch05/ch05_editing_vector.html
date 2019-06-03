@@ -1,0 +1,43 @@
+
+<!-- saved from url=(0087)http://www.acuriousanimal.com/Openlayers-Cookbook/recipes/ch05/ch05_editing_vector.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><form action="http://www.acuriousanimal.com/Openlayers-Cookbook/recipes/ch05/ch05_editing_vector.html">
+    Vector Layer A: <input id="rbA" type="radio" data-dojo-type="dijit/form/RadioButton" onchange="layerAChanged" name="layer" value="layerA" checked="">
+    Vector Layer B: <input id="rbB" type="radio" data-dojo-type="dijit/form/RadioButton" onchange="layerBChanged" name="layer" value="layerB">
+</form>
+
+<div id="ch05_editing_vector" style="width: 100%; height: 100%;"></div>
+
+<!-- The magic comes here -->
+<script type="text/javascript">
+    // Create map
+    var map = new OpenLayers.Map("ch05_editing_vector");    
+    var osm = new OpenLayers.Layer.OSM();        
+    map.addLayer(osm);
+    map.addControl(new OpenLayers.Control.LayerSwitcher());
+    map.setCenter(new OpenLayers.LonLat(0, 0), 3);
+
+    var vectorLayerA = new OpenLayers.Layer.Vector("Vector layer A");
+    var vectorLayerB = new OpenLayers.Layer.Vector("Vector layer B");
+    map.addLayers([vectorLayerA, vectorLayerB]);
+
+    var editingToolbarControl = new OpenLayers.Control.EditingToolbar(vectorLayerA);
+    map.addControl(editingToolbarControl);
+        
+    function layerAChanged(checked) {
+        if(checked) {
+            var controls = editingToolbarControl.getControlsByClass("OpenLayers.Control.DrawFeature");
+            for(var i=0; i< controls.length; i++) {
+                controls[i].layer = vectorLayerA;
+            }
+        }
+    }
+    function layerBChanged(checked) {
+        if(checked) {
+            var controls = editingToolbarControl.getControlsByClass("OpenLayers.Control.DrawFeature");
+            for(var i=0; i< controls.length; i++) {
+                controls[i].layer = vectorLayerB;
+            }
+        }
+    }
+</script>
+</body></html>

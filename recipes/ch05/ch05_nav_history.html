@@ -1,0 +1,34 @@
+
+<!-- saved from url=(0084)http://www.acuriousanimal.com/Openlayers-Cookbook/recipes/ch05/ch05_nav_history.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><button data-dojo-type="dijit/form/ToggleButton" data-dojo-props="iconClass:&#39;dijitCheckBoxIcon&#39;, checked: true, onChange: navigationChanged">Navigation</button>
+
+<div id="ch05_nav_history" style="width: 100%; height: 90%;"></div>
+
+<!-- The magic comes here -->
+<script type="text/javascript">
+    // Create map
+    var map = new OpenLayers.Map("ch05_nav_history", {
+        controls: []
+    });    
+    var osm = new OpenLayers.Layer.OSM();        
+    map.addLayer(osm);
+    
+    // Add controls
+    var navigation = new OpenLayers.Control.Navigation();
+    var history = new OpenLayers.Control.NavigationHistory();
+    var panel = new OpenLayers.Control.Panel();
+    panel.addControls([history, history.next, history.previous]);
+    
+    map.addControls([navigation, history, panel]);
+    
+    map.setCenter(new OpenLayers.LonLat(0, 0), 4);
+
+    function navigationChanged(checked) {
+        if(checked) {
+            navigation.activate();
+        } else {
+            navigation.deactivate();
+        }
+    }
+</script>
+</body></html>

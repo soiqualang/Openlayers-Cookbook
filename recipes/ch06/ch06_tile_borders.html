@@ -1,0 +1,21 @@
+
+<!-- saved from url=(0085)http://www.acuriousanimal.com/Openlayers-Cookbook/recipes/ch06/ch06_tile_borders.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><div id="ch06_tile_borders" style="width: 100%; height: 90%;"></div>
+
+<style>
+    .olTileImage {
+        border: 1px solid #999;
+    }
+</style>
+
+<!-- The magic comes here -->
+<script type="text/javascript">
+    
+    // Create map
+    var map = new OpenLayers.Map("ch06_tile_borders");    
+    var osm = new OpenLayers.Layer.OSM();        
+    map.addLayer(osm);
+    
+    map.setCenter(new OpenLayers.LonLat(0, 0), 2);
+</script>
+</body></html>
